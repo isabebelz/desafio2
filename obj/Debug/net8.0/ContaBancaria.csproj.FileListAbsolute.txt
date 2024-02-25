@@ -1,0 +1,14 @@
+C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\bin\Debug\net8.0\ContaBancaria.exe
+C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\bin\Debug\net8.0\ContaBancaria.deps.json
+C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\bin\Debug\net8.0\ContaBancaria.runtimeconfig.json
+C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\bin\Debug\net8.0\ContaBancaria.dll
+C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\bin\Debug\net8.0\ContaBancaria.pdb
+C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\obj\Debug\net8.0\ContaBancaria.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\obj\Debug\net8.0\ContaBancaria.AssemblyInfoInputs.cache
+C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\obj\Debug\net8.0\ContaBancaria.AssemblyInfo.cs
+C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\obj\Debug\net8.0\ContaBancaria.csproj.CoreCompileInputs.cache
+C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\obj\Debug\net8.0\ContaBancaria.dll
+C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\obj\Debug\net8.0\refint\ContaBancaria.dll
+C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\obj\Debug\net8.0\ContaBancaria.pdb
+C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\obj\Debug\net8.0\ContaBancaria.genruntimeconfig.cache
+C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\obj\Debug\net8.0\ref\ContaBancaria.dll
