@@ -2,7 +2,7 @@ using ContaBancaria.Entidades;
 
 namespace ContaBancaria.Servicos
 {
-    public interface IListaContas
+    public interface IContas
     {
         List<Conta> contas { get; set; }
     }

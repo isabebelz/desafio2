@@ -1,5 +1,3 @@
-using ContaBancaria.Entidades;
-
 namespace ContaBancaria.Servicos
 {
     public interface IOperacoesBancarias

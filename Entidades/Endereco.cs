@@ -4,19 +4,19 @@ namespace ContaBancaria.Entidades
 {
     public class Endereco
     {
-        public string? Cep { get; set; }
-        public string? Logradouro { get; set; }
-        public string? Bairro { get; set; }
-        public string? Localidade { get; set; }
-        public string? UF { get; set; }
+        public string? cep { get; set; }
+        public string? logradouro { get; set; }
+        public string? bairro { get; set; }
+        public string? localidade { get; set; }
+        public string? uf { get; set; }
 
         public Endereco(string cep, string logradouro, string bairro, string localidade, string uf)
         {
-            Cep = cep;
-            Logradouro = logradouro;
-            Bairro = bairro;
-            Localidade = localidade;
-            UF = uf;
+            this.cep = cep;
+            this.logradouro = logradouro;
+            this.bairro = bairro;
+            this.localidade = localidade;
+            this.uf = uf;
         }
 
         public Endereco()
@@ -26,25 +26,26 @@ namespace ContaBancaria.Entidades
         public override string ToString()
         {
             return "\nCEP: "
-            + Cep
+            + cep
             + "\nLogradouro: "
-            + Logradouro
+            + logradouro
             + "\nBairro: "
-            + Bairro
+            + bairro
             + "\nnLocalidade: "
-            + Localidade
+            + localidade
             + "\nUF: "
-            + UF;
+            + uf;
         }
 
         
-        public void ExibirEndereco()
+        public async void ExibirEndereco()
         {
-            Console.WriteLine($"CEP: {Cep}");
-            Console.WriteLine($"Logradouro: {Logradouro}");
-            Console.WriteLine($"Bairro: {Bairro}");
-            Console.WriteLine($"Localidade: {Localidade}");
-            Console.WriteLine($"UF: {UF}");
+            var endereco = await ClienteHTTP.IntegracaoCep(cep!);
+            Console.WriteLine($"CEP: {endereco.cep}");
+            Console.WriteLine($"Logradouro: {endereco.logradouro}");
+            Console.WriteLine($"Bairro: {endereco.bairro}");
+            Console.WriteLine($"Localidade: {endereco.localidade}");
+            Console.WriteLine($"UF: {endereco.uf}");
         }
     
 
