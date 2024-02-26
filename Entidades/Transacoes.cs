@@ -3,11 +3,11 @@ namespace ContaBancaria.Entidades
 {
     public class Transacoes
     {
-        public decimal Valor { get; private set; }
+        public double Valor { get; private set; }
         public DateTime Momento { get; private set; }
         public Operacoes Operacao { get; private set; }
 
-        public Transacoes(decimal valor, DateTime momento, Operacoes operacao)
+        public Transacoes(double valor, DateTime momento, Operacoes operacao)
         {
             Valor = valor;
             Momento = momento;

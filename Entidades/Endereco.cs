@@ -1,3 +1,5 @@
+using ContaBancaria.Servicos;
+
 namespace ContaBancaria.Entidades
 {
     public class Endereco
@@ -6,20 +8,21 @@ namespace ContaBancaria.Entidades
         public string? Logradouro { get; set; }
         public string? Bairro { get; set; }
         public string? Localidade { get; set; }
-        public string? Estado { get; set; }
+        public string? UF { get; set; }
 
-        public Endereco(string cep, string logradouro, string bairro, string localidade, string estado)
+        public Endereco(string cep, string logradouro, string bairro, string localidade, string uf)
         {
             Cep = cep;
             Logradouro = logradouro;
             Bairro = bairro;
             Localidade = localidade;
-            Estado = estado;
+            UF = uf;
         }
 
         public Endereco()
         {
         }
+
         public override string ToString()
         {
             return "\nCEP: "
@@ -31,9 +34,18 @@ namespace ContaBancaria.Entidades
             + "\nnLocalidade: "
             + Localidade
             + "\nUF: "
-            + Estado;
+            + UF;
         }
 
+        
+        public void ExibirEndereco()
+        {
+            Console.WriteLine($"CEP: {Cep}");
+            Console.WriteLine($"Logradouro: {Logradouro}");
+            Console.WriteLine($"Bairro: {Bairro}");
+            Console.WriteLine($"Localidade: {Localidade}");
+            Console.WriteLine($"UF: {UF}");
+        }
     
 
 

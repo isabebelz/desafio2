@@ -6,12 +6,12 @@ namespace ContaBancaria.Entidades
 {
     public class Conta : IOperacoesBancarias
     {
-        public decimal Saldo { get; private set; }
+        public double Saldo { get; private set; }
         public int Numero { get; private set; }
         public Titular Titular { get; set; }
         public Operacoes Operacao { get; set; }
         public List<Transacoes> HistoricoTransacoes { get; set; } = new List<Transacoes>();
-        public GerenciadorContas? Gerenciador {get; set; }
+        public GerenciadorContas? Gerenciador { get; set; }
 
         public Conta(Titular titular, int numero)
         {
@@ -19,7 +19,7 @@ namespace ContaBancaria.Entidades
             Numero = numero;
         }
 
-        public Conta(Titular titular, int numero, decimal saldo)
+        public Conta(Titular titular, int numero, double saldo)
         : this(titular, numero)
         {
             Saldo = saldo;
@@ -40,30 +40,47 @@ namespace ContaBancaria.Entidades
         }
         public void Depositar()
         {
-
-            Console.Write("Insira o valor de depósito: ");
-            decimal transferencia = decimal.Parse(Console.ReadLine()!);
-
-            if (transferencia > 0)
+            do
             {
-                Saldo += transferencia;
-                Operacao = Operacoes.Transferencia;
-                HistoricoTransacoes.Add(new Transacoes(transferencia, DateTime.Now, Operacao));
-                Console.WriteLine("Depósito realizado com sucesso! O transferencia foi adicionado ao saldo da sua conta.");
-            }
-            else
-            {
-                Console.WriteLine("Parece que houve um engano. Infelizmente, não é possível depositar um transferencia menor que zero. Por favor, insira um transferencia válido e positivo para realizar o depósito.");
 
+                Console.Write("Insira o valor de depósito: ");
+                try
+                {
+
+                    double deposito = double.Parse(Console.ReadLine()!);
+
+                    if (deposito > 0)
+                    {
+                        Saldo += deposito;
+                        Operacao = Operacoes.Deposito;
+                        HistoricoTransacoes.Add(new Transacoes(deposito, DateTime.Now, Operacao));
+                        Console.WriteLine("Depósito realizado com sucesso! O depósito foi adicionado ao saldo da sua conta.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Parece que houve um engano. Infelizmente, não é possível depositar um valor menor ou igual zero. Por favor, insira um valor válido e positivo para realizar o depósito.");
+
+                    }
+
+                    Menu.Conta(this);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message + "Tente novamente.");
+                }
+                Menu.Conta(this);
             }
 
-            Menu.Conta(this);
+            while (true);
+
+
+
         }
 
         public void Sacar()
         {
             Console.Write("Insira o valor de saque: ");
-            decimal saque = decimal.Parse(Console.ReadLine()!);
+            double saque = double.Parse(Console.ReadLine()!);
 
             if (saque <= Saldo && saque != 0)
             {
@@ -80,7 +97,7 @@ namespace ContaBancaria.Entidades
 
             Menu.Conta(this);
         }
-        public void Sacar(decimal saque)
+        public void Sacar(double saque)
         {
             if (saque <= Saldo && saque != 0)
             {
@@ -100,7 +117,7 @@ namespace ContaBancaria.Entidades
         {
 
             Console.Write("Insira o valor de transferência: ");
-            decimal transferencia = decimal.Parse(Console.ReadLine()!);
+            double transferencia = double.Parse(Console.ReadLine()!);
 
             Console.WriteLine("Insira os dados da conta para a qual deseja transferir");
             Console.Write("Nome: ");
@@ -108,7 +125,7 @@ namespace ContaBancaria.Entidades
             Console.Write("Número da conta: ");
             int numeroConta = int.Parse(Console.ReadLine()!);
 
-            (bool existe, Conta? conta)  = Gerenciador!.ContaExiste(numeroConta);
+            (bool existe, Conta? conta) = Gerenciador!.ContaExiste(numeroConta);
 
             if (transferencia <= Saldo && transferencia != 0 && existe)
             {

@@ -3,24 +3,22 @@ using ContaBancaria.Entidades;
 
 namespace ContaBancaria.Servicos
 {
-    public class  ClienteHTTP
+    public class ClienteHTTP
     {
-        
-        public static async void APICep(string cep)
+
+        public static async Task<Endereco> IntegracaoCep(string cep)
         {
-            //Endereco endereco = new Endereco();
+            Endereco endereco;
 
-            using(var cliente = new HttpClient())
+            using (HttpClient cliente = new HttpClient())
             {
-                HttpResponseMessage resposta = await cliente.GetAsync($"https://viacep.com.br/ws/{cep}/json/");
-                var endereco = await resposta.Content.ReadAsStringAsync();
-
-                Console.WriteLine(endereco);
-                //endereco = JsonSerializer.Deserialize<Endereco>(resposta)!;
+                string resposta = await cliente.GetStringAsync($"viacep.com.br/ws/{cep}/json/");
+                endereco = JsonSerializer.Deserialize<Endereco>(resposta)!;
             }
 
-            
-            
+            return endereco;
         }
+
+
     }
 }

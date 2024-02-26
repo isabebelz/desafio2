@@ -27,3 +27,4 @@ C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\obj\Debug\net6.0\refint\Cont
 C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\obj\Debug\net6.0\ContaBancaria.pdb
 C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\obj\Debug\net6.0\ContaBancaria.genruntimeconfig.cache
 C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\obj\Debug\net6.0\ref\ContaBancaria.dll
+C:\Users\IsabelOliveiraAmorim\Desktop\ContaBancaria\obj\Debug\net6.0\ContaBancaria.sourcelink.json

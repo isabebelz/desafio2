@@ -27,13 +27,11 @@ namespace ContaBancaria.Servicos
             }
             while (!Validacao.ValidarCPF(cpf));
 
-
-
             (bool existe, Conta? conta) = ContaExiste(numero);
 
             if (existe && conta!.Titular.CPF.Equals(cpf))
             {
-                Menu.Conta(conta!);
+                Menu.Conta(conta);
             }
             else
             {
@@ -43,7 +41,7 @@ namespace ContaBancaria.Servicos
 
         }
 
-        public async void AbrirConta()
+        public void AbrirConta()
         {
             Console.WriteLine("Bem vindo(a)! Preencha os dados para prosseguirmos com a abertura da sua conta.");
 
@@ -62,6 +60,8 @@ namespace ContaBancaria.Servicos
 
             bool atendeIdadeMinima;
 
+            DateOnly dataNascimento;
+
             do
             {
                 atendeIdadeMinima = true;
@@ -69,7 +69,7 @@ namespace ContaBancaria.Servicos
                 Console.Write("Data de nascimento (dd/mm/aaaa): ");
                 string data = Console.ReadLine()!;
 
-                DateOnly dataNascimento = DateOnly.ParseExact(data, "dd/MM/yyyy");
+                dataNascimento = DateOnly.ParseExact(data, "dd/MM/yyyy");
 
                 if (DateTime.Now.Year - dataNascimento.Year < 18)
                 {
@@ -77,25 +77,59 @@ namespace ContaBancaria.Servicos
                     atendeIdadeMinima = false;
                 }
             }
-            while(!atendeIdadeMinima);
+            while (!atendeIdadeMinima);
+
+            Console.WriteLine("Endereço");
 
             Console.Write("CEP: ");
             string cep = Console.ReadLine()!;
 
-            ClienteHTTP.APICep(cep);
+            Console.Write("Logradouro: ");
+            string logradouro = Console.ReadLine()!;
 
-            
+            Console.Write("Bairro: ");
+            string bairro = Console.ReadLine()!;
 
-            
+            Console.Write("Cidade: ");
+            string localidade = Console.ReadLine()!;
 
+            Console.Write("UF: ");
+            string uf = Console.ReadLine()!;
 
-            
+            Endereco endereco = new Endereco(cep, logradouro, bairro, localidade, uf);
 
+            Titular titular = new Titular(nome, cpf, endereco, dataNascimento);
 
+            int numeroConta = GeradorNumeroConta();
 
+            Console.WriteLine("Gostaria de iniciar sua conta com um saldo inicial? ");
+            Console.Write("(s/n): ");
 
+            char escolha = char.Parse(Console.ReadLine()!.ToLower());
 
+            Conta conta;
 
+            switch (escolha)
+            {
+                case 's':
+                    Console.Write("Saldo inicial: ");
+                    double saldo = double.Parse(Console.ReadLine()!);
+
+                    conta = new Conta(titular, numeroConta, saldo);
+
+                    Console.WriteLine("Conta aberta com sucesso! Obrigado pela confiança.");
+
+                    break;
+                case 'n':
+                    conta = new Conta(titular, numeroConta);
+
+                    Console.WriteLine("Conta aberta com sucesso! Obrigado pela confiança.");
+                    
+                    break;
+                default:
+                    Console.WriteLine("Opção inválida. Por favor, tente novamente.");
+                    break;
+            }
 
 
         }
@@ -134,5 +168,6 @@ namespace ContaBancaria.Servicos
         }
 
 
+    
     }
 }
